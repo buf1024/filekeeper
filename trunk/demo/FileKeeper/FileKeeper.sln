@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FileKeeper", "FileKeeper\FileKeeper.vcproj", "{23C5D67C-BA5E-49F0-BEC4-2CEA28FF495E}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "InjectProg", "InjectProg\InjectProg.vcproj", "{6F426901-CC4C-45D8-80E9-E782665666D7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{23C5D67C-BA5E-49F0-BEC4-2CEA28FF495E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{23C5D67C-BA5E-49F0-BEC4-2CEA28FF495E}.Debug|Win32.Build.0 = Debug|Win32
+		{23C5D67C-BA5E-49F0-BEC4-2CEA28FF495E}.Release|Win32.ActiveCfg = Release|Win32
+		{23C5D67C-BA5E-49F0-BEC4-2CEA28FF495E}.Release|Win32.Build.0 = Release|Win32
+		{6F426901-CC4C-45D8-80E9-E782665666D7}.Debug|Win32.ActiveCfg = Debug|Win32
+		{6F426901-CC4C-45D8-80E9-E782665666D7}.Debug|Win32.Build.0 = Debug|Win32
+		{6F426901-CC4C-45D8-80E9-E782665666D7}.Release|Win32.ActiveCfg = Release|Win32
+		{6F426901-CC4C-45D8-80E9-E782665666D7}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
