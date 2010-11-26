@@ -1,7 +1,31 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FileKeeper", "..\FileKeeper\FileKeeper.vcproj", "{E471969D-DED1-44B2-AEA9-BBCF0172454C}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FileKeeperUT", "..\FileKeeperUT\FileKeeperUT.vcproj", "{2B946445-B426-4CA9-B92A-14703EC27429}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FileKeeperStuff", "..\FileKeeperStuff\FileKeeperStuff.vcproj", "{ED494949-8BA1-49C8-A29F-492098506A07}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E471969D-DED1-44B2-AEA9-BBCF0172454C}.Debug|Win32.ActiveCfg = Debug|Win32
+		{E471969D-DED1-44B2-AEA9-BBCF0172454C}.Debug|Win32.Build.0 = Debug|Win32
+		{E471969D-DED1-44B2-AEA9-BBCF0172454C}.Release|Win32.ActiveCfg = Release|Win32
+		{E471969D-DED1-44B2-AEA9-BBCF0172454C}.Release|Win32.Build.0 = Release|Win32
+		{2B946445-B426-4CA9-B92A-14703EC27429}.Debug|Win32.ActiveCfg = Debug|Win32
+		{2B946445-B426-4CA9-B92A-14703EC27429}.Debug|Win32.Build.0 = Debug|Win32
+		{2B946445-B426-4CA9-B92A-14703EC27429}.Release|Win32.ActiveCfg = Release|Win32
+		{2B946445-B426-4CA9-B92A-14703EC27429}.Release|Win32.Build.0 = Release|Win32
+		{ED494949-8BA1-49C8-A29F-492098506A07}.Debug|Win32.ActiveCfg = Debug|Win32
+		{ED494949-8BA1-49C8-A29F-492098506A07}.Debug|Win32.Build.0 = Debug|Win32
+		{ED494949-8BA1-49C8-A29F-492098506A07}.Release|Win32.ActiveCfg = Release|Win32
+		{ED494949-8BA1-49C8-A29F-492098506A07}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
