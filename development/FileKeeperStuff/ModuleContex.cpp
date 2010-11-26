@@ -54,6 +54,10 @@ ULONG ModuleContex::AddRefLockNum()
 }
 ULONG ModuleContex::ReleaseLockNum()
 {
+	if (m_nLockNum ==0)
+	{
+		return m_nLockNum;
+	}
 	m_nLockNum--;
 	return m_nLockNum;
 }
@@ -65,6 +69,10 @@ ULONG ModuleContex::AddRefUsageNum()
 }
 ULONG ModuleContex::ReleaseUsageNum()
 {
+	if (m_nUseNum == 0)
+	{
+		return m_nUseNum;
+	}
 	m_nUseNum--;
 	return m_nUseNum;
 }
@@ -94,4 +102,78 @@ HKEY ModuleContex::GetFolderHEY()
 void ModuleContex::SetFolderHEY(HKEY hKey)
 {
 	m_hkeyProgID = hKey;
+}
+
+bool ModuleContex::AddCommandHandler(UINT nCmdID, CommandHandler pfnHandler)
+{
+	bool bRet = false;
+	_ASSERT(nCmdID >= 0 && pfnHandler != NULL);
+	CmdHandlerIterator iter = m_mapCommands.find(nCmdID);
+	if (iter == m_mapCommands.end())
+	{
+		m_mapCommands.insert(make_pair(nCmdID, pfnHandler));
+		bRet = true;
+	}
+	return bRet;
+}
+bool ModuleContex::RemoveCommandHandler(UINT nCmdID)
+{
+	CmdHandlerIterator iter = m_mapCommands.find(nCmdID);
+	if (iter != m_mapCommands.end())
+	{
+		m_mapCommands.erase(iter);
+	}
+	return true;
+}
+ModuleContex::CommandHandler ModuleContex::GetCommandHandler(UINT nCmdID)
+{
+	CommandHandler pfnHandler = NULL;
+	CmdHandlerIterator iter = m_mapCommands.find(nCmdID);
+	if (iter != m_mapCommands.end())
+	{
+		pfnHandler = m_mapCommands[nCmdID];
+	}
+	return pfnHandler;
+}
+
+UINT ModuleContex::GetCommandHandlerSize() const
+{
+	return m_mapCommands.size();
+}
+
+bool ModuleContex::AddCommandString(UINT nCmdID, Std_String strVal)
+{
+	bool bRet = false;
+	_ASSERT(nCmdID >= 0 && strVal != _T(""));
+	CmdIDStringIterator iter = m_mapCmdString.find(nCmdID);
+	if (iter == m_mapCmdString.end())
+	{
+		m_mapCmdString.insert(make_pair(nCmdID, strVal));
+		bRet = true;
+	}
+	return bRet;
+}
+bool ModuleContex::RemoveCommandString(UINT nCmdID)
+{
+	CmdIDStringIterator iter = m_mapCmdString.find(nCmdID);
+	if (iter != m_mapCmdString.end())
+	{
+		m_mapCmdString.erase(iter);
+	}
+	return true;
+}
+Std_String ModuleContex::GetCommandString(UINT nCmdID)
+{
+	Std_String strRet;
+	CmdIDStringIterator iter = m_mapCmdString.find(nCmdID);
+	if (iter != m_mapCmdString.end())
+	{
+		strRet = m_mapCmdString[nCmdID];
+	}
+	return strRet;
+}
+
+UINT ModuleContex::GetCommandStringSize() const
+{
+	return m_mapCmdString.size();
 }

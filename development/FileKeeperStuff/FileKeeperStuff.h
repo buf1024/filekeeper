@@ -61,6 +61,12 @@ public:
 	virtual ULONG STDMETHODCALLTYPE Release( void);
 
 
+public:
+	//Menu Handler
+	void OnAbout();
+	void OnSetting();
+
+
 private:
 	ULONG m_nRef;
 };
