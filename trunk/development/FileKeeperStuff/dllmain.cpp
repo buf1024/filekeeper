@@ -14,7 +14,7 @@ BOOL APIENTRY DllMain( HMODULE hModule,
 		ModuleContex::GetInstPtr()->SetModuleHandle(hModule);
 		break;
 	case DLL_PROCESS_DETACH:
-	case DLL_THREAD_DETACH:
+//	case DLL_THREAD_DETACH:
 		ModuleContex::ReleaseRC();
 		break;
 	}
