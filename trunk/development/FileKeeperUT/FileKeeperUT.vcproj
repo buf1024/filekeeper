@@ -291,10 +291,54 @@
 			<Filter
 				Name="TC"
 				>
+				<File
+					RelativePath="..\FileKeeper\Data\DatabaseSchema.h"
+					>
+				</File>
+				<File
+					RelativePath="..\FileKeeper\Data\DataPool.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\FileKeeper\Data\DataPool.h"
+					>
+				</File>
+				<File
+					RelativePath="..\FileKeeper\Data\PersistObject.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\FileKeeper\Data\PersistObject.h"
+					>
+				</File>
+				<File
+					RelativePath="..\FileKeeper\Data\ProgObject.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\FileKeeper\Data\ProgObject.h"
+					>
+				</File>
+				<File
+					RelativePath="..\FileKeeper\Data\UserObject.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\FileKeeper\Data\UserObject.h"
+					>
+				</File>
 			</Filter>
 			<Filter
 				Name="Test"
 				>
+				<File
+					RelativePath=".\DataPoolTest.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\DataPoolTest.h"
+					>
+				</File>
 			</Filter>
 		</Filter>
 		<File
