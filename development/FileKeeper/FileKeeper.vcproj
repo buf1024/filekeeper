@@ -272,6 +272,26 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Data\sqlite3.c"
+				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath=".\Data\sqlite3.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Data\sqlite3ext.h"
+				>
+			</File>
+			<File
 				RelativePath=".\Data\UserObject.cpp"
 				>
 			</File>
