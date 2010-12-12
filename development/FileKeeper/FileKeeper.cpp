@@ -4,6 +4,7 @@
 #include "stdafx.h"
 #include "FileKeeper.h"
 
+#include "Data/DatabaseSchema.h"
 
 int APIENTRY _tWinMain(HINSTANCE hInstance,
                      HINSTANCE hPrevInstance,

@@ -243,6 +243,42 @@
 		<Filter
 			Name="Data"
 			>
+			<File
+				RelativePath=".\Data\DatabaseSchema.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Data\DataPool.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Data\DataPool.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Data\PersistObject.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Data\PersistObject.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Data\ProgObject.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Data\ProgObject.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Data\UserObject.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Data\UserObject.h"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Handler"
