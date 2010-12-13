@@ -1,3 +1,12 @@
+//=============================================================================
+/**
+* @file	    ProgObject.cpp
+* @brief	ProgObject implementation
+* @author	heidong
+* @version	1.0
+* @date		2010-12-13 20:54:11
+*/
+//=============================================================================
 #include "StdAfx.h"
 #include "ProgObject.h"
 #include "DataPool.h"
@@ -9,6 +18,15 @@ ProgObject::ProgObject(DataPool* pPool)
 
 ProgObject::~ProgObject(void)
 {
+}
+
+bool ProgObject::Persist()
+{
+	return false;
+}
+bool ProgObject::Refresh()
+{
+	return false;
 }
 
 void ProgObject::SetProgPath(Std_String strProgPath)
@@ -42,11 +60,26 @@ Std_String ProgObject::GetDescription()
 	return m_strDesc;
 }
 
-int ProgObject::GetForbidPath(list<Std_String>& rgpPath)
+int ProgObject::GetForbidPath(list<ForbidOpt>& rgpPathOpt)
 {
 	return -1;
 }
+
+int ProgObject::GetPathForbidOpt(Std_String strPath)
+{
+	return 0xFF;
+}
+
+bool ProgObject::AddForbidPath(Std_String strPath, int nOpt)
+{
+	return false;
+}
 bool ProgObject::DropForbidPath(Std_String strPath)
+{
+	return false;
+
+}
+bool ProgObject::ChangeForbidPathOpt(Std_String strPath, int nOpt)
 {
 	return false;
 }

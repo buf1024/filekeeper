@@ -1,3 +1,12 @@
+//=============================================================================
+/**
+* @file	    UserObject.cpp
+* @brief	UserObject implementation
+* @author	heidong
+* @version	1.0
+* @date		2010-12-13 20:54:53
+*/
+//=============================================================================
 #include "StdAfx.h"
 #include "UserObject.h"
 #include "DataPool.h"
@@ -12,13 +21,13 @@ UserObject::~UserObject(void)
 }
 
 
-void UserObject::Persist()
+bool UserObject::Persist()
 {
-
+	return false;
 }
-void UserObject::Restore()
+bool UserObject::Refresh()
 {
-
+	return false;
 }
 
 void UserObject::SetUserName(Std_String strUserName)
@@ -51,6 +60,11 @@ Std_String UserObject::GetDescription()
 int UserObject::GetEncryptPath(list<Std_String>& rgpPath)
 {
 	return -1;
+}
+
+bool UserObject::AddEncryptPath(Std_String strPath)
+{
+	return false;
 }
 
 bool UserObject::DropEncryptPath(Std_String strPath)

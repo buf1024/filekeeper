@@ -6,6 +6,7 @@
 #include "..\FileKeeper\Data\UserObject.h"
 #include "..\FileKeeper\Data\ProgObject.h"
 #include "..\FileKeeper\Data\PersistObject.h"
+#include "..\FileKeeper\Data\ForbidOpt.h"
 
 DataPoolTest::DataPoolTest(void)
 {
@@ -203,7 +204,7 @@ void DataPoolTest::testGetSpecProgForbidPath()
 	DataPool* pPool = DataPool::GetInstPtr();
 
 	Std_String strProgPath = _T("C:\\c.exe");
-	list<Std_String> rgpPath;
+	list<ForbidOpt> rgpPath;
 	int nCount = pPool->GetForbidPath(strProgPath, rgpPath);
 }
 void DataPoolTest::testGetSpecPathForbidProg()
