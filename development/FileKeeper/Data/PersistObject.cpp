@@ -1,3 +1,12 @@
+//=============================================================================
+/**
+* @file	    PersistObject.cpp
+* @brief	PersistObject implemetation
+* @author	heidong
+* @version	1.0
+* @date		2010-12-13 20:52:51
+*/
+//=============================================================================
 #include "StdAfx.h"
 #include "PersistObject.h"
 #include "DataPool.h"
@@ -11,11 +20,11 @@ PersistObject::~PersistObject(void)
 {
 }
 
-void PersistObject::Persist()
+bool PersistObject::Persist()
 {
-
+	return true;
 }
-void PersistObject::Restore()
+bool PersistObject::Refresh()
 {
-
+	return true;
 }

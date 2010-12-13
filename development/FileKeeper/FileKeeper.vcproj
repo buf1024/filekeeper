@@ -256,6 +256,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Data\ForbidOpt.h"
+				>
+			</File>
+			<File
 				RelativePath=".\Data\PersistObject.cpp"
 				>
 			</File>
@@ -303,6 +307,82 @@
 		<Filter
 			Name="Handler"
 			>
+		</Filter>
+		<Filter
+			Name="Util"
+			>
+			<Filter
+				Name="Hash"
+				>
+				<File
+					RelativePath=".\Util\Hash.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Util\Hash.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Util\HashCRC32Impl.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Util\HashCRC32Impl.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Util\HashImpl.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Util\HashMD5Impl.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Util\HashMD5Impl.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Util\HashSHA1Impl.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Util\HashSHA1Impl.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Util\md5.cpp"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							UsePrecompiledHeader="0"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\Util\md5.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Util\sha1.cpp"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							UsePrecompiledHeader="0"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\Util\sha1.h"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<File
 			RelativePath=".\ReadMe.txt"

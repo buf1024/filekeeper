@@ -15,7 +15,7 @@ CREATE TABLE Prog
 CREATE TABLE ForbidList
 (
     ID INTEGER PRIMARY KEY AUTOINCREMENT,
-    Option INTEGER, --0 forbid all, othervalue forbid specific program
+    Option INTEGER, --forbid option, -1 means forbidden all program
     ProgPath VARCHAR(260),
     Path VARCHAR(260),
     FOREIGN KEY (ProgPath) REFERENCES Prog

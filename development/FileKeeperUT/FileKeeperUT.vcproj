@@ -304,6 +304,10 @@
 					>
 				</File>
 				<File
+					RelativePath="..\FileKeeper\Data\ForbidOpt.h"
+					>
+				</File>
+				<File
 					RelativePath="..\FileKeeper\Data\PersistObject.cpp"
 					>
 				</File>
@@ -317,6 +321,22 @@
 				</File>
 				<File
 					RelativePath="..\FileKeeper\Data\ProgObject.h"
+					>
+				</File>
+				<File
+					RelativePath="..\FileKeeper\Data\sqlite3.c"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							UsePrecompiledHeader="0"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath="..\FileKeeper\Data\sqlite3.h"
 					>
 				</File>
 				<File
