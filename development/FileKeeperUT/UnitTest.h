@@ -1,5 +1,5 @@
 
-// UtilTest.h : UtilTest 应用程序的主头文件
+// UnitTest.h : UnitTest 应用程序的主头文件
 //
 #pragma once
 
@@ -10,14 +10,14 @@
 #include "resource.h"       // 主符号
 
 
-// CUtilTestApp:
-// 有关此类的实现，请参阅 UtilTest.cpp
+// CUnitTestApp:
+// 有关此类的实现，请参阅 UnitTest.cpp
 //
 
-class CUtilTestApp : public CWinApp
+class CUnitTestApp : public CWinApp
 {
 public:
-	CUtilTestApp();
+	CUnitTestApp();
 
 	void RunUnitTest();
 
@@ -30,4 +30,4 @@ public:
 	DECLARE_MESSAGE_MAP()
 };
 
-extern CUtilTestApp theApp;
+extern CUnitTestApp theApp;
