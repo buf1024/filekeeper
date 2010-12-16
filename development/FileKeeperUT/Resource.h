@@ -1,11 +1,11 @@
 //{{NO_DEPENDENCIES}}
 // Microsoft Visual C++ generated include file.
-// Used by UtilTest.rc
+// Used by UnitTest.rc
 //
 #define IDD_ABOUTBOX				100
 #define IDP_OLE_INIT_FAILED			100
 #define IDR_MAINFRAME				128
-#define IDR_UtilTestTYPE				130
+#define IDR_UnitTestTYPE				130
 
 // 新对象的下一组默认值
 //

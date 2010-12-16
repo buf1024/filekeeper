@@ -12,13 +12,16 @@
 #include <stl.h>
 #include "ForbidOpt.h"
 
+#include "sqlite3.h"
+
 using namespace lgc;
 
 class UserObject;
 class ProgObject;
 class PersistObject;
 
-class DataPool : public Singleton<DataPool>
+class DataPool
+	: public Singleton<DataPool>
 {
 public:
 	DataPool(void);
@@ -28,6 +31,9 @@ public:
 	/**@name DataPool basic function*/
 	/**@{*/
 	bool Empty();
+	bool Init(Std_String strFile);
+	void SetDbFile(Std_String strFile);
+	Std_String GetDbFile();
 	/**@}*/
 
 	/**@name Persist Object function*/
@@ -114,6 +120,15 @@ public:
 	*@param strPath the new encrypt path
 	*@return true if successfully add, false otherwise
 	*/
+    /** Method: AddEncryptPath
+     * 
+     * 
+     * @param strUser
+     * @param strPath
+     * @return
+     * @date    2010-12-14 (21:52)
+     * @author  heidong
+     */
 	bool AddEncryptPath(Std_String strUser, Std_String strPath);
 	/**delete the encrypt path of some user
 	*@param strUser the user
@@ -122,4 +137,8 @@ public:
 	*/
 	bool DropEncryptPath(Std_String strUser, Std_String strPath);
 	/**@}*/
+
+private:
+	sqlite3* m_pDB;
+	Std_String m_strDbFile;
 };

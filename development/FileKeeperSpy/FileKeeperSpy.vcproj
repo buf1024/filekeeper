@@ -2,9 +2,9 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9.00"
-	Name="FileKeeper"
-	ProjectGUID="{E471969D-DED1-44B2-AEA9-BBCF0172454C}"
-	RootNamespace="FileKeeper"
+	Name="FileKeeperSpy"
+	ProjectGUID="{246958CB-704B-4CF0-9E8C-DDA852CD5243}"
+	RootNamespace="FileKeeperSpy"
 	Keyword="Win32Proj"
 	TargetFrameworkVersion="196613"
 	>
@@ -20,7 +20,7 @@
 			Name="Debug|Win32"
 			OutputDirectory=".\..\BinD"
 			IntermediateDirectory=".\..\Debug"
-			ConfigurationType="1"
+			ConfigurationType="2"
 			CharacterSet="1"
 			>
 			<Tool
@@ -42,7 +42,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories=".\..\External\include"
-				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS"
+				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;FILEKEEPERSPY_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -61,11 +61,12 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="$(OutDir)\$(ProjectName)D.exe"
+				OutputFile="$(OutDir)\$(ProjectName)D.dll"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories=".\..\External\LibD;.\..\LibD"
 				GenerateDebugInformation="true"
 				SubSystem="2"
+				ImportLibrary=".\..\LibD\$(TargetName)D.lib"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -94,7 +95,7 @@
 			Name="Release|Win32"
 			OutputDirectory=".\..\Bin"
 			IntermediateDirectory=".\..\Release"
-			ConfigurationType="1"
+			ConfigurationType="2"
 			CharacterSet="1"
 			WholeProgramOptimization="1"
 			>
@@ -118,7 +119,7 @@
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
 				AdditionalIncludeDirectories=".\..\External\include"
-				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS"
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;FILEKEEPERSPY_EXPORTS"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="2"
@@ -142,6 +143,7 @@
 				SubSystem="2"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
+				ImportLibrary=".\..\Lib\$(TargetName).lib"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -176,8 +178,26 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath=".\FileKeeper.cpp"
+				RelativePath=".\dllmain.cpp"
 				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="0"
+						CompileAsManaged="0"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="0"
+						CompileAsManaged="0"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath=".\stdafx.cpp"
@@ -206,11 +226,7 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
-				RelativePath=".\FileKeeper.h"
-				>
-			</File>
-			<File
-				RelativePath=".\Resource.h"
+				RelativePath=".\resource.h"
 				>
 			</File>
 			<File
@@ -228,173 +244,9 @@
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
 			<File
-				RelativePath=".\FileKeeper.ico"
+				RelativePath=".\FileKeeperSpy.rc"
 				>
 			</File>
-			<File
-				RelativePath=".\FileKeeper.rc"
-				>
-			</File>
-			<File
-				RelativePath=".\small.ico"
-				>
-			</File>
-		</Filter>
-		<Filter
-			Name="Data"
-			>
-			<File
-				RelativePath=".\Data\DatabaseSchema.h"
-				>
-			</File>
-			<File
-				RelativePath=".\Data\DataPool.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\Data\DataPool.h"
-				>
-			</File>
-			<File
-				RelativePath=".\Data\ForbidOpt.h"
-				>
-			</File>
-			<File
-				RelativePath=".\Data\PersistObject.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\Data\PersistObject.h"
-				>
-			</File>
-			<File
-				RelativePath=".\Data\ProgObject.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\Data\ProgObject.h"
-				>
-			</File>
-			<File
-				RelativePath=".\Data\sqlite3.c"
-				>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						UsePrecompiledHeader="0"
-					/>
-				</FileConfiguration>
-			</File>
-			<File
-				RelativePath=".\Data\sqlite3.h"
-				>
-			</File>
-			<File
-				RelativePath=".\Data\sqlite3ext.h"
-				>
-			</File>
-			<File
-				RelativePath=".\Data\UserObject.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\Data\UserObject.h"
-				>
-			</File>
-		</Filter>
-		<Filter
-			Name="Handler"
-			>
-		</Filter>
-		<Filter
-			Name="Util"
-			>
-			<Filter
-				Name="Hash"
-				>
-				<File
-					RelativePath=".\Util\Hash.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\Util\Hash.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Util\HashCRC32Impl.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\Util\HashCRC32Impl.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Util\HashImpl.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Util\HashMD5Impl.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\Util\HashMD5Impl.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Util\HashSHA1Impl.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\Util\HashSHA1Impl.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Util\md5.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							UsePrecompiledHeader="0"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath=".\Util\md5.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Util\sha1.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							UsePrecompiledHeader="0"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath=".\Util\sha1.h"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="Misc"
-				>
-				<File
-					RelativePath=".\Util\Util.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\Util\Util.h"
-					>
-				</File>
-			</Filter>
 		</Filter>
 		<File
 			RelativePath=".\ReadMe.txt"
