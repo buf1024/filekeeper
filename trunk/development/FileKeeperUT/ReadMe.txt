@@ -1,28 +1,28 @@
 ================================================================================
-    MICROSOFT 基础类库: UtilTest 项目概述
+    MICROSOFT 基础类库: UnitTest 项目概述
 ===============================================================================
 
-应用程序向导已为您创建此 UtilTest 应用程序。此应用程序不仅演示使用 Microsoft 基础类的基本知识，而且可作为编写应用程序的起点。
+应用程序向导已为您创建此 UnitTest 应用程序。此应用程序不仅演示使用 Microsoft 基础类的基本知识，而且可作为编写应用程序的起点。
 
-此文件包含组成 UtilTest 应用程序的各个文件的内容摘要。
+此文件包含组成 UnitTest 应用程序的各个文件的内容摘要。
 
-UtilTest.vcproj
+UnitTest.vcproj
     这是使用应用程序向导生成的 VC++ 项目的主项目文件。
     它包含有关生成文件的 Visual C++ 版本的信息，以及有关使用应用程序向导选择的平台、配置和项目功能的信息。
 
-UtilTest.h
-    这是应用程序的主要头文件。它包括其他项目特定的头文件(包括 Resource.h)，并声明 CUtilTestApp 应用程序类。
+UnitTest.h
+    这是应用程序的主要头文件。它包括其他项目特定的头文件(包括 Resource.h)，并声明 CUnitTestApp 应用程序类。
 
-UtilTest.cpp
-    这是包含应用程序类 CUtilTestApp 的主要应用程序源文件。
+UnitTest.cpp
+    这是包含应用程序类 CUnitTestApp 的主要应用程序源文件。
 
-UtilTest.rc
+UnitTest.rc
     这是程序使用的所有 Microsoft Windows 资源的列表。它包括 RES 子目录中存储的图标、位图和光标。此文件可以直接在 Microsoft Visual C++ 中进行编辑。项目资源位于 2052 中。
 
-res\UtilTest.ico
-    这是用作应用程序图标的图标文件。此图标包括在主要资源文件 UtilTest.rc 中。
+res\UnitTest.ico
+    这是用作应用程序图标的图标文件。此图标包括在主要资源文件 UnitTest.rc 中。
 
-res\UtilTest.rc2
+res\UnitTest.rc2
     此文件包含不是由 Microsoft Visual C++ 编辑的资源。您应该将不可由资源编辑器编辑的所有资源放在此文件中。
 
 /////////////////////////////////////////////////////////////////////////////
@@ -38,12 +38,12 @@ MainFrm.h, MainFrm.cpp
 
 应用程序向导创建一个文档类型和一个视图:
 
-UtilTestDoc.h，UtilTestDoc.cpp - 文档
-    这些文件包含 CUtilTestDoc 类。编辑这些文件可以添加特殊文档数据并可实现文件保存和加载(通过 CUtilTestDoc::Serialize)。
+UnitTestDoc.h，UnitTestDoc.cpp - 文档
+    这些文件包含 CUnitTestDoc 类。编辑这些文件可以添加特殊文档数据并可实现文件保存和加载(通过 CUnitTestDoc::Serialize)。
 
-UtilTestView.h，UtilTestView.cpp - 文档的视图
-    这些文件包含 CUtilTestView 类。
-    CUtilTestView 对象用于查看 CUtilTestDoc 对象。
+UnitTestView.h，UnitTestView.cpp - 文档的视图
+    这些文件包含 CUnitTestView 类。
+    CUnitTestView 对象用于查看 CUnitTestDoc 对象。
 
 
 
@@ -64,13 +64,13 @@ ActiveX 控件
 其他标准文件:
 
 StdAfx.h, StdAfx.cpp
-    这些文件用于生成名为 UtilTest.pch 的预编译头(PCH)文件和名为 StdAfx.obj 的预编译类型文件。
+    这些文件用于生成名为 UnitTest.pch 的预编译头(PCH)文件和名为 StdAfx.obj 的预编译类型文件。
 
 Resource.h
     这是标准头文件，它定义新资源 ID。
     Microsoft Visual C++ 将读取并更新此文件。
 
-UtilTest.manifest
+UnitTest.manifest
 	Windows XP 使用应用程序清单文件描述应用程序	对特定版本并行程序集的依赖性。加载程序使用此	信息从程序集缓存加载相应程序集或	从应用程序加载私有信息。应用程序清单可能作为	与应用程序可执行文件安装在同一文件夹中的外部 .manifest 文件包括在内以便重新发布，	也可能以资源的形式包括在该可执行文件中。
 /////////////////////////////////////////////////////////////////////////////
 

@@ -2,11 +2,11 @@
 #include "DataPoolTest.h"
 
 #include "stl.h"
-#include "..\FileKeeper\Data\DataPool.h"
-#include "..\FileKeeper\Data\UserObject.h"
-#include "..\FileKeeper\Data\ProgObject.h"
-#include "..\FileKeeper\Data\PersistObject.h"
-#include "..\FileKeeper\Data\ForbidOpt.h"
+#include "..\..\FileKeeper\Data\DataPool.h"
+#include "..\..\FileKeeper\Data\UserObject.h"
+#include "..\..\FileKeeper\Data\ProgObject.h"
+#include "..\..\FileKeeper\Data\PersistObject.h"
+#include "..\..\FileKeeper\Data\ForbidOpt.h"
 
 DataPoolTest::DataPoolTest(void)
 {
@@ -23,6 +23,7 @@ void DataPoolTest::setUp()
 	//2. kavin 14785214782 kavin
 	//3. hello 1478569 hello
 	DataPool* pPool = DataPool::GetInstPtr();
+	pPool->Init(_T("FileKeeper.db"));
 	pPool->Empty();
 
 	UserObject* pObj = new UserObject;

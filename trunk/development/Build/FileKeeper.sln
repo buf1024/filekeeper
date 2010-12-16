@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FileKeeperUT", "..\FileKeep
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FileKeeperStuff", "..\FileKeeperStuff\FileKeeperStuff.vcproj", "{ED494949-8BA1-49C8-A29F-492098506A07}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FileKeeperSpy", "..\FileKeeperSpy\FileKeeperSpy.vcproj", "{246958CB-704B-4CF0-9E8C-DDA852CD5243}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -25,6 +27,10 @@ Global
 		{ED494949-8BA1-49C8-A29F-492098506A07}.Debug|Win32.Build.0 = Debug|Win32
 		{ED494949-8BA1-49C8-A29F-492098506A07}.Release|Win32.ActiveCfg = Release|Win32
 		{ED494949-8BA1-49C8-A29F-492098506A07}.Release|Win32.Build.0 = Release|Win32
+		{246958CB-704B-4CF0-9E8C-DDA852CD5243}.Debug|Win32.ActiveCfg = Debug|Win32
+		{246958CB-704B-4CF0-9E8C-DDA852CD5243}.Debug|Win32.Build.0 = Debug|Win32
+		{246958CB-704B-4CF0-9E8C-DDA852CD5243}.Release|Win32.ActiveCfg = Release|Win32
+		{246958CB-704B-4CF0-9E8C-DDA852CD5243}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

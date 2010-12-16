@@ -30,10 +30,10 @@ CREATE TABLE EncryptList
 
 CREATE TABLE SysConfig
 (
-    ID INTEGER PRIMARY KEY AUTOINCREMENT
+    ID INTEGER PRIMARY KEY AUTOINCREMENT,
     ProgName VARCHAR(64),
-    ProgVer VARCHAR(16),
+    ProgVer VARCHAR(16)
     --Other values....
 );
 
-INSERT INTO SysConfig(ProgName, ProVer) VALUES('FileKeeper', '1.0.0.0');
+INSERT INTO SysConfig(ProgName, ProgVer) VALUES('FileKeeper', '1.0.0.0');

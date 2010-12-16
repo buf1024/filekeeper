@@ -217,15 +217,15 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath=".\UtilTest.cpp"
+				RelativePath=".\UnitTest.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\UtilTestDoc.cpp"
+				RelativePath=".\UnitTestDoc.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\UtilTestView.cpp"
+				RelativePath=".\UnitTestView.cpp"
 				>
 			</File>
 		</Filter>
@@ -251,15 +251,15 @@
 				>
 			</File>
 			<File
-				RelativePath=".\UtilTest.h"
+				RelativePath=".\UnitTest.h"
 				>
 			</File>
 			<File
-				RelativePath=".\UtilTestDoc.h"
+				RelativePath=".\UnitTestDoc.h"
 				>
 			</File>
 			<File
-				RelativePath=".\UtilTestView.h"
+				RelativePath=".\UnitTestView.h"
 				>
 			</File>
 		</Filter>
@@ -269,19 +269,19 @@
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
 			<File
-				RelativePath=".\res\UtilTest.ico"
+				RelativePath=".\res\UnitTest.ico"
 				>
 			</File>
 			<File
-				RelativePath=".\UtilTest.rc"
+				RelativePath=".\UnitTest.rc"
 				>
 			</File>
 			<File
-				RelativePath=".\res\UtilTest.rc2"
+				RelativePath=".\res\UnitTest.rc2"
 				>
 			</File>
 			<File
-				RelativePath=".\res\UtilTestDoc.ico"
+				RelativePath=".\res\UnitTestDoc.ico"
 				>
 			</File>
 		</Filter>
@@ -347,16 +347,32 @@
 					RelativePath="..\FileKeeper\Data\UserObject.h"
 					>
 				</File>
+				<File
+					RelativePath="..\FileKeeper\Util\Util.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\FileKeeper\Util\Util.h"
+					>
+				</File>
 			</Filter>
 			<Filter
 				Name="Test"
 				>
 				<File
-					RelativePath=".\DataPoolTest.cpp"
+					RelativePath=".\TestCase\DataPoolTest.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\DataPoolTest.h"
+					RelativePath=".\TestCase\DataPoolTest.h"
+					>
+				</File>
+				<File
+					RelativePath=".\TestCase\UtilTest.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\TestCase\UtilTest.h"
 					>
 				</File>
 			</Filter>

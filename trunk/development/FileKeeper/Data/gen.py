@@ -9,7 +9,7 @@ def main():
     sql = sys.argv[1]
     hpp = sys.argv[2]
         
-    res = '#pragma once\n\nconst char s_gszSql[] =\n'
+    res = '#pragma once\n\nconst char gszSql[] =\n'
     
     sqlfile = open(sql)
     sqls = sqlfile.readlines()
@@ -20,7 +20,7 @@ def main():
             res = res + '\n'
             empty = empty + 1
             continue
-        res = res + '\t\t"' + sentence + '"\n'
+        res = res + '\t\t"' + sentence + '\\r\\n"\n'
         empty = 0
     res = res[:-(empty+1)]
     res = res + ';\n'
