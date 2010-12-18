@@ -30,9 +30,30 @@ public:
 public:
 	/**@name DataPool basic function*/
 	/**@{*/
+    /** Method Empty
+     * 
+     * Delete all data in the database
+     * @return true if successfully, false otherwise
+     */
 	bool Empty();
+    /** Method Init
+     * 
+     * Initialize the Database
+     * @param strFile The Database filename
+     * @return  true if successfully, false otherwise
+     */ 
 	bool Init(Std_String strFile);
+    /** Method SetDbFile
+     * 
+     * Set an new database file and initialize it.
+     * @param strFile The Database filename
+     */
 	void SetDbFile(Std_String strFile);
+    /** Method GetDbFile
+     * 
+     * Get the current database filename
+     * @return The Database filename
+     */
 	Std_String GetDbFile();
 	/**@}*/
 
@@ -49,6 +70,14 @@ public:
 	*/
 	int GetUser(list<UserObject*>& rgpUsers);
 
+    /** Method PersistUser
+     * 
+     * Persist a userobject into the database. update or create new one.
+     * @param pUser The persist object
+     * @return true if succesfully, false otherwise
+     */
+	bool PersistUser(UserObject* pUser);
+
 	/**Get program from the database
 	*@param strProg The program
 	*@return NULL if the program not found, othewise the program
@@ -59,6 +88,13 @@ public:
 	*@return The count of the programs
 	*/
 	int GetProg(list<ProgObject*>& rgpProgs);
+    /** Method PersistProg
+     * 
+     * Persist a programobject into the database. update or create new one.
+     * @param pProg The Program object
+     * @return true if succesfully, false otherwise
+     */
+	bool PersistProg(ProgObject* pProg);
 	/**@}*/
 
 	/**@name Forbidden function*/
@@ -81,12 +117,26 @@ public:
 	*@return true if successfully add, othwerwise false
 	*/
 	bool AddForbidPath(Std_String strProgPath, Std_String strPath, int nOpt = 0x07);
+    /** Method AddForbidPath
+     * 
+     * Add a new forbidden path the forbidden all program access
+     * @param strPath The new path
+     * @return true if successfully add, othwerwise false
+     */
+	bool AddForbidPath(Std_String strPath);
 	/**Delete a forbidden path
 	*@param strProgPath The program path
 	*@param strPath The path
 	*@return true if successfully delete, othwerwise false
 	*/
 	bool DropForbidPath(Std_String strProgPath, Std_String strPath);
+    /** Method DropForbidPath
+     * 
+     * Delete a forbidden path that forbid all program access
+     * @param strPath The path
+     * @return true if successfully delete, othwerwise false
+     */
+	bool DropForbidPath(Std_String strPath);
 	/**Change the forbidden path forbidden mask
 	*@param strProgPath The program path
 	*@param strPath The path
@@ -100,6 +150,14 @@ public:
 	*@return the count of the program
 	*/
 	int GetPathForbidProg(Std_String strPath, list<ProgObject*>& rgpProg);
+    /** Method AddPathForbidProg
+     * 
+     * Set Path that forbid specific progragm to access
+     * @param strPath The Path
+     * @param strProgPath The program path
+     * @return true if successfull add, false otherwise
+     */
+	bool AddPathForbidProg(Std_String strPath, Std_String strProgPath);
 	/**@}*/
 
 	/**@name Encryption function*/
@@ -141,4 +199,5 @@ public:
 private:
 	sqlite3* m_pDB;
 	Std_String m_strDbFile;
+	bool m_bInit;
 };

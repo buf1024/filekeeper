@@ -8,6 +8,8 @@
 #include "..\..\FileKeeper\Data\PersistObject.h"
 #include "..\..\FileKeeper\Data\ForbidOpt.h"
 
+bool gbInt = false;
+
 DataPoolTest::DataPoolTest(void)
 {
 }
@@ -18,6 +20,9 @@ DataPoolTest::~DataPoolTest(void)
 
 void DataPoolTest::setUp()
 {
+	if (gbInt) return;
+	
+	gbInt = true;
 	//Assume we have 3 users
 	//1. heidong 12345678911111 heidong
 	//2. kavin 14785214782 kavin
@@ -31,6 +36,9 @@ void DataPoolTest::setUp()
 	pObj->SetPassword(_T("12345678911111"));
 	pObj->SetDescription(_T("heidong"));
 	pObj->Persist();
+	//assume user heidong encrypt E:\\DDD H:\\AAA
+	pObj->AddEncryptPath(_T("E:\\DDD"));
+	pObj->AddEncryptPath(_T("H:\\AAA"));
 	delete pObj;
 
 	pObj = new UserObject;
@@ -87,15 +95,23 @@ void DataPoolTest::setUp()
 	pProg->SetFootprint(_T("e4777777"));
 	pProg->SetDescription(_T("14"));
 	pProg->Persist();
+	//Assume Prog C:\\e.exe Forbid to access C:\\AAA B:\\BBB
+	pProg->AddForbidPath(_T("C:\\AAA"));
+	pProg->AddForbidPath(_T("B:\\BBB"));
 	delete pProg;
 
-	//Assume C:\WINDOWS\system32 is forbid to access
-	//pPool->AddForbidPath(_T("C:\\WINDOWS\\system32"));
+	//Assume C:\WINDOWS\system32 D:\Program Files are forbid to access
+	pPool->AddForbidPath(_T("C:\\WINDOWS\\system32"));
+	pPool->AddForbidPath(_T("D:\\Program Files"));
+
+	//Assum path A:\\AAA forbid program C:\\a.exe C:\\d.exe to access
+	pPool->AddPathForbidProg(_T("A:\\AAA"), _T("C:\\a.exe"));
+	pPool->AddPathForbidProg(_T("A:\\AAA"), _T("C:\\d.exe"));
 
 }
 void DataPoolTest::tearDown()
 {
-	DataPool::ReleaseRC();
+	//DataPool::ReleaseRC();
 }
 
 void DataPoolTest::testGetUser()
@@ -198,23 +214,59 @@ void DataPoolTest::testGetForbidPaths()
 
 	list<Std_String> rgpPath;
 	int nCount = pPool->GetForbidPath(rgpPath);
+	CPPUNIT_ASSERT(nCount == 2);
+	CPPUNIT_ASSERT(nCount == rgpPath.size());
+
+	
+	for(list<Std_String>::iterator iter = rgpPath.begin();
+		iter != rgpPath.end(); ++iter)
+	{
+		CPPUNIT_ASSERT(*iter == _T("C:\\WINDOWS\\system32") || *iter == _T("D:\\Program Files"));
+	}
 
 }
 void DataPoolTest::testGetSpecProgForbidPath()
 {
 	DataPool* pPool = DataPool::GetInstPtr();
 
-	Std_String strProgPath = _T("C:\\c.exe");
+	Std_String strProgPath = _T("C:\\e.exe");
 	list<ForbidOpt> rgpPath;
 	int nCount = pPool->GetForbidPath(strProgPath, rgpPath);
+
+	CPPUNIT_ASSERT(nCount == 2);
+	CPPUNIT_ASSERT(nCount == rgpPath.size());
+
+	for(list<ForbidOpt>::iterator iter = rgpPath.begin();
+		iter != rgpPath.end(); ++iter)
+	{
+		CPPUNIT_ASSERT(iter->m_strPath == _T("C:\\AAA") || iter->m_strPath == _T("B:\\BBB"));
+		CPPUNIT_ASSERT(iter->m_nOpt == 0xFF);
+	}
 }
 void DataPoolTest::testGetSpecPathForbidProg()
 {
 	DataPool* pPool = DataPool::GetInstPtr();
 
-	Std_String strPath = _T("C:\\Windows");
+	Std_String strPath = _T("A:\\AAA");
 	list<ProgObject*> rgpProg;
 	int nCount = pPool->GetPathForbidProg(strPath, rgpProg);
+
+	CPPUNIT_ASSERT(nCount == 2);
+	CPPUNIT_ASSERT(nCount == rgpProg.size());
+
+	for(list<ProgObject*>::iterator iter = rgpProg.begin();
+		iter != rgpProg.end(); ++iter)
+	{
+		CPPUNIT_ASSERT((*iter)->GetProgPath() == _T("C:\\a.exe") || (*iter)->GetProgPath() == _T("C:\\d.exe"));
+		CPPUNIT_ASSERT((*iter)->GetDescription() == _T("a4777777") || (*iter)->GetDescription() == _T("d4777777"));
+	}
+
+	for(list<ProgObject*>::iterator iter = rgpProg.begin();
+		iter != rgpProg.end(); ++iter)
+	{
+		delete *iter;
+	}
+	rgpProg.clear();
 }
 void DataPoolTest::testGetEncriptPathUser()
 {
@@ -223,6 +275,61 @@ void DataPoolTest::testGetEncriptPathUser()
 	Std_String strUser = _T("heidong");
 	list<Std_String> rgpPath;
 	int nCount = pPool->GetEncryptPath(strUser, rgpPath);
+
+	CPPUNIT_ASSERT(nCount == 2);
+	CPPUNIT_ASSERT(nCount == rgpPath.size());
+
+	for(list<Std_String>::iterator iter = rgpPath.begin();
+		iter != rgpPath.end(); ++iter)
+	{
+		CPPUNIT_ASSERT(*iter == _T("E:\\DDD") || *iter == _T("H:\\AAA"));
+	}
+}
+
+void DataPoolTest::testDropPath()
+{
+	DataPool* pPool = DataPool::GetInstPtr();
+
+	pPool->DropForbidPath(_T("D:\\Program Files"));
+	list<Std_String> rgpPath;
+	int nCount = pPool->GetForbidPath(rgpPath);
+	CPPUNIT_ASSERT(nCount == 1);
+	CPPUNIT_ASSERT(nCount == rgpPath.size());
+	ASSERT(rgpPath.front() == _T("C:\\WINDOWS\\system32"));
+
+	Std_String strProgPath = _T("C:\\e.exe");
+	pPool->DropForbidPath(strProgPath, _T("C:\\AAA"));	
+	list<ForbidOpt> rgpPathOpt;
+	nCount = pPool->GetForbidPath(strProgPath, rgpPathOpt);
+	CPPUNIT_ASSERT(nCount == 1);
+	CPPUNIT_ASSERT(nCount == rgpPathOpt.size());
+	ASSERT(rgpPathOpt.front().m_strPath == _T("B:\\BBB"));
+
+	Std_String strUser = _T("heidong");
+	pPool->DropEncryptPath(strUser, _T("E:\\DDD"));
+	list<Std_String> rgpPathEn;
+	nCount = pPool->GetEncryptPath(strUser, rgpPath);
+	
+	CPPUNIT_ASSERT(nCount == 1);
+	CPPUNIT_ASSERT(nCount == rgpPathEn.size());
+	ASSERT(rgpPathEn.front() == _T("H:\\AAA"));
+
+}
+
+void DataPoolTest::testChangeForbidPathOpt()
+{
+	DataPool* pPool = DataPool::GetInstPtr();
+	Std_String strProgPath = _T("C:\\e.exe");
+	pPool->ChangeForbidPathOpt(strProgPath, _T("B:\\BBB"), 0x01);
+
+	list<ForbidOpt> rgpPathOpt;
+	int nCount = pPool->GetForbidPath(strProgPath, rgpPathOpt);
+
+	CPPUNIT_ASSERT(nCount == 1);
+	CPPUNIT_ASSERT(nCount == rgpPathOpt.size());
+
+	ForbidOpt opt = rgpPathOpt.front();
+	CPPUNIT_ASSERT(opt.m_nOpt == 0X01);
 }
 
 CPPUNIT_TEST_SUITE_REGISTRATION(DataPoolTest);

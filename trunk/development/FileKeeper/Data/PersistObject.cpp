@@ -28,3 +28,11 @@ bool PersistObject::Refresh()
 {
 	return true;
 }
+
+DataPool* PersistObject::GetDataPool()
+{
+	if (m_pDataPool)
+		return m_pDataPool;
+
+	return DataPool::GetInstPtr();
+}
