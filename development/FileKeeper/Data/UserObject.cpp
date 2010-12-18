@@ -23,10 +23,23 @@ UserObject::~UserObject(void)
 
 bool UserObject::Persist()
 {
-	return false;
+	DataPool* pPool = GetDataPool();
+	return pPool->PersistUser(this);
 }
 bool UserObject::Refresh()
 {
+	DataPool* pPool = GetDataPool();
+	UserObject* pObj = pPool->GetUser(m_strName);
+	if (pObj)
+	{
+		m_strName = pObj->GetUserName();
+		m_strPass = pObj->GetPassword();
+		m_strDesc = pObj->GetDescription();
+
+		delete pObj;
+		return true;
+	}
+
 	return false;
 }
 
@@ -59,15 +72,18 @@ Std_String UserObject::GetDescription()
 
 int UserObject::GetEncryptPath(list<Std_String>& rgpPath)
 {
-	return -1;
+	DataPool* pPool = GetDataPool();
+	return pPool->GetEncryptPath(m_strName, rgpPath);
 }
 
 bool UserObject::AddEncryptPath(Std_String strPath)
 {
-	return false;
+	DataPool* pPool = GetDataPool();
+	return pPool->AddEncryptPath(m_strName, strPath);
 }
 
 bool UserObject::DropEncryptPath(Std_String strPath)
 {
-	return false;
+	DataPool* pPool = GetDataPool();
+	return pPool->DropEncryptPath(m_strName, strPath);
 }

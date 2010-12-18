@@ -1,6 +1,6 @@
 #pragma once
 
-const char gszSql[] =
+const char gszCreateSql[] =
 		"CREATE TABLE User\r\n"
 		"(\r\n"
 		"    Name VARCHAR(64) PRIMARY KEY,\r\n"
@@ -40,3 +40,17 @@ const char gszSql[] =
 		");\r\n"
 
 		"INSERT INTO SysConfig(ProgName, ProgVer) VALUES('FileKeeper', '1.0.0.0');\r\n";
+
+const char gszDropSql[] =
+		"DROP TABLE User;\r\n"
+		"DROP TABLE Prog;\r\n"
+		"DROP TABLE ForbidList;\r\n"
+		"DROP TABLE EncryptList;\r\n"
+		"DROP TABLE SysConfig;\r\n";
+
+const char gszCleanSql[] =
+		"DELETE FROM User;\r\n"
+		"DELETE FROM Prog;\r\n"
+		"DELETE FROM ForbidList;\r\n"
+		"DELETE FROM EncryptList;\r\n"
+		"DELETE FROM SysConfig;\r\n";

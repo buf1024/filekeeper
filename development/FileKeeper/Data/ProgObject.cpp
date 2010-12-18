@@ -22,10 +22,23 @@ ProgObject::~ProgObject(void)
 
 bool ProgObject::Persist()
 {
-	return false;
+	DataPool* pPool = GetDataPool();
+	return pPool->PersistProg(this);
 }
 bool ProgObject::Refresh()
 {
+	DataPool* pPool = GetDataPool();
+	ProgObject* pObj = pPool->GetProg(m_strPath);
+	if (pObj)
+	{
+		m_strPath = pObj->GetProgPath();
+		m_strFootprint = pObj->GetFootprint();
+		m_strDesc = pObj->GetDescription();
+
+		delete pObj;
+		return true;
+	}
+
 	return false;
 }
 
@@ -39,7 +52,16 @@ Std_String ProgObject::GetProgPath()
 }
 Std_String ProgObject::GetProgName()
 {
-	return _T("");
+	Std_String strRet;
+	if (!m_strPath.empty())
+	{
+		size_t nPos = m_strPath.rfind(_T('\\'));
+		if (nPos != -1)
+		{
+			strRet = m_strPath.substr(nPos + 1);
+		}
+	}
+	return strRet;
 }
 
 void ProgObject::SetFootprint(Std_String strFootprint)
@@ -62,24 +84,42 @@ Std_String ProgObject::GetDescription()
 
 int ProgObject::GetForbidPath(list<ForbidOpt>& rgpPathOpt)
 {
-	return -1;
+	DataPool* pPool = GetDataPool();
+	return pPool->GetForbidPath(m_strPath, rgpPathOpt);
 }
 
 int ProgObject::GetPathForbidOpt(Std_String strPath)
 {
-	return 0xFF;
+	int nRet = 0xFF;
+	list<ForbidOpt> rgpPathOpt;
+	int nCount = GetForbidPath(rgpPathOpt);
+	if (nCount > 0)
+	{
+		for (list<ForbidOpt>::iterator iter = rgpPathOpt.begin();
+			iter != rgpPathOpt.end(); ++iter)
+		{
+			if (strPath == iter->m_strPath)
+			{
+				return iter->m_nOpt;
+			}
+		}
+	}
+	return nRet;
 }
 
 bool ProgObject::AddForbidPath(Std_String strPath, int nOpt)
 {
-	return false;
+	DataPool* pPool = GetDataPool();
+	return pPool->AddForbidPath(m_strPath, strPath, nOpt);
 }
 bool ProgObject::DropForbidPath(Std_String strPath)
 {
-	return false;
+	DataPool* pPool = GetDataPool();
+	return pPool->DropForbidPath(m_strPath, strPath);
 
 }
 bool ProgObject::ChangeForbidPathOpt(Std_String strPath, int nOpt)
 {
-	return false;
+	DataPool* pPool = GetDataPool();
+	return pPool->ChangeForbidPathOpt(m_strPath, strPath, nOpt);
 }

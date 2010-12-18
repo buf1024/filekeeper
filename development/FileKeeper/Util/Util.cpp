@@ -25,13 +25,18 @@ string Util::GetStringFromWString(wstring strValue)
 	{
 		return "";
 	}
-	char szBuf[1024] = "";
+
+	int nLen = (strValue.length() + 1)*2;
+	char* pszBuf = new char[nLen];
 	//We don't use C Runtime convert function here
 	WideCharToMultiByte(CP_ACP, 0L, 
 		strValue.c_str(), -1, 
-		szBuf, 1024,
+		pszBuf, nLen,
 		NULL, NULL);
-	return szBuf;
+	string strRet = pszBuf;
+	delete[] pszBuf;
+
+	return strRet;
 }
 wstring Util::GetWStringFromString(string strValue)
 {
@@ -39,10 +44,15 @@ wstring Util::GetWStringFromString(string strValue)
 	{
 		return L"";
 	}
-	wchar_t szBuf[1024] = L"";
+
+	int nLen = strValue.length() + 1;
+	wchar_t* pszBuf = new wchar_t[nLen];
 	//We don't use C Runtime convert function here
 	MultiByteToWideChar(CP_ACP, 0L,
 		strValue.c_str(), -1,       
-		szBuf, 1024);
-	return szBuf;
+		pszBuf, nLen);
+	wstring strRet = pszBuf;
+	delete[] pszBuf;
+
+	return strRet;
 }

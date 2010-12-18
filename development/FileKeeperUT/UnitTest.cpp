@@ -16,6 +16,7 @@
 #define new DEBUG_NEW
 #endif
 
+#include "..\..\FileKeeper\Data\DataPool.h"
 
 // CUnitTestApp
 
@@ -49,6 +50,7 @@ BOOL CUnitTestApp::InitInstance()
 {
 	CWinApp::InitInstance();
 	RunUnitTest();
+	DataPool::ReleaseRC();
 	return FALSE;
 }
 

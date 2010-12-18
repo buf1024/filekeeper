@@ -36,6 +36,13 @@ public:
 	virtual bool Refresh();
 	/**@}*/
 
+    /** Method GetDataPool
+     * 
+     * Get Current Datapool, if not set return the global one 
+     * @return The Datapool
+     */
+	DataPool* GetDataPool();
+
 protected:
 	DataPool* m_pDataPool; /**<The database source*/
 };
