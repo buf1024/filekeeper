@@ -53,6 +53,9 @@ public:
 	Std_String GetCommandString(UINT nCmdID);
 	UINT GetCommandStringSize() const;
 
+
+    int GetSelectedFiles(list<Std_String>& rgpFiles);
+
 private:
 	HMODULE m_hModule;
 	ULONG m_nLockNum;

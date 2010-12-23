@@ -43,6 +43,13 @@ public:
      * @return  true if successfully, false otherwise
      */ 
 	bool Init(Std_String strFile);
+    /** Method ExecRawSql
+     * 
+     * Execute the raw sql
+     * @param strSql The SQL
+     * @return true if succesfully, false otherwise
+     */
+    bool ExecRawSql(string strSql);
     /** Method SetDbFile
      * 
      * Set an new database file and initialize it.
@@ -155,9 +162,10 @@ public:
      * Set Path that forbid specific progragm to access
      * @param strPath The Path
      * @param strProgPath The program path
+     * @param nOpt The forbidden mask
      * @return true if successfull add, false otherwise
      */
-	bool AddPathForbidProg(Std_String strPath, Std_String strProgPath);
+	bool AddPathForbidProg(Std_String strPath, Std_String strProgPath, int nOpt = 0x07);
 	/**@}*/
 
 	/**@name Encryption function*/
@@ -195,6 +203,11 @@ public:
 	*/
 	bool DropEncryptPath(Std_String strUser, Std_String strPath);
 	/**@}*/
+
+private:
+    bool InitDBData();
+    UserObject* BuildUserObject(sqlite3_stmt* pStmt);
+    ProgObject* BuildProgObject(sqlite3_stmt* pStmt);
 
 private:
 	sqlite3* m_pDB;

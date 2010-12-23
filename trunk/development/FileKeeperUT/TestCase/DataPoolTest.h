@@ -14,8 +14,7 @@ class DataPoolTest :
 		CPPUNIT_TEST(testGetSpecProgForbidPath);
 		CPPUNIT_TEST(testGetSpecPathForbidProg);
 		CPPUNIT_TEST(testGetEncriptPathUser);
-		CPPUNIT_TEST(testDropPath);
-		CPPUNIT_TEST(testChangeForbidPathOpt);
+		CPPUNIT_TEST(testAddDropPath);
 	CPPUNIT_TEST_SUITE_END();
 public:
 	DataPoolTest(void);
@@ -34,7 +33,6 @@ public:
 	void testGetSpecProgForbidPath();
 	void testGetSpecPathForbidProg();
 	void testGetEncriptPathUser();
-	void testDropPath();
-	void testChangeForbidPathOpt();
+	void testAddDropPath();
 
 };

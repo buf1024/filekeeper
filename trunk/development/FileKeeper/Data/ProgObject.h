@@ -34,7 +34,7 @@ public:
 	/**
 	*@see PersistObject::Refresh()
 	*/
-	virtual bool Refresh();
+    virtual bool Refresh();
 
 public:
 	/**@name Getter and Setter of attributes*/
@@ -50,7 +50,7 @@ public:
 	/**Get the program name
 	*@return the program name
 	*/
-	Std_String GetProgName();
+    Std_String GetProgName();
 
 	/**Set program footprint
 	*@param strFootprint the program footprint
@@ -69,6 +69,16 @@ public:
 	*@return the program description
 	*/
 	Std_String GetDescription();
+
+    /**Set the program Option
+	*@param nOpt <0 ignore program, other normal
+	*/
+    void SetOption(int nOpt);
+    /**Get the program option
+	*@return the program option
+	*/
+    int GetOption();
+
 	/**@}*/
 
 	/**@name program forbid option*/
@@ -106,4 +116,5 @@ private:
 	Std_String m_strPath; /**<The Program path*/
 	Std_String m_strFootprint; /**<The footprint of the program, CRC32 Value*/
 	Std_String m_strDesc; /**<The Program description*/
+    int m_nOption;
 };

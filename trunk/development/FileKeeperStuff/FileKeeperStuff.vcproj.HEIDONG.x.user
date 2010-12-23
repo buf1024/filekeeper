@@ -9,7 +9,7 @@
 			Name="Debug|Win32"
 			>
 			<DebugSettings
-				Command="C:\WINDOWS\explorer.exe"
+				Command="D:\WINDOWS\explorer.exe"
 				WorkingDirectory=""
 				CommandArguments=""
 				Attach="false"
