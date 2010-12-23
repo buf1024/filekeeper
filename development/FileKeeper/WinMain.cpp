@@ -2,9 +2,12 @@
 //
 
 #include "stdafx.h"
+#include "resource.h"
+#include "Util/SingletonInst.h"
 #include "FileKeeper.h"
 
-#include "Data/DatabaseSchema.h"
+
+using namespace lgc;
 
 int APIENTRY _tWinMain(HINSTANCE hInstance,
                      HINSTANCE hPrevInstance,
@@ -14,11 +17,32 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 	UNREFERENCED_PARAMETER(hPrevInstance);
 	UNREFERENCED_PARAMETER(lpCmdLine);
 
+    SingletonInst single;
+    //An instance has already exists
+    if (!single)
+    {
+        return 0;
+    }
+
 	MSG msg;
 	HACCEL hAccelTable;
 
 
 	hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_FILEKEEPER));
+
+
+    //Simple initialize, not consider more
+    FileKeeper fileKeeper;
+    if (fileKeeper.Init())
+    {
+        fileKeeper.Run();
+    }
+    else
+    {
+        //FileKeeper Initializ Fail.
+        return -1;
+    }
+    
 
 	// 主消息循环:
 	while (GetMessage(&msg, NULL, 0, 0))

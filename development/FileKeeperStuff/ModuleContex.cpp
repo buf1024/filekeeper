@@ -1,5 +1,6 @@
 #include "StdAfx.h"
 #include "ModuleContex.h"
+#include <shellapi.h>
 
 ModuleContex::ModuleContex(void)
 : m_hModule(NULL)
@@ -176,4 +177,28 @@ Std_String ModuleContex::GetCommandString(UINT nCmdID)
 UINT ModuleContex::GetCommandStringSize() const
 {
 	return m_mapCmdString.size();
+}
+
+int ModuleContex::GetSelectedFiles(list<Std_String>& rgpFiles)
+{
+    rgpFiles.clear();
+
+    if(!m_pDtObj) return -1;
+
+    STGMEDIUM medium;
+    FORMATETC fmte = {CF_HDROP, NULL, DVASPECT_CONTENT, -1, TYMED_HGLOBAL};
+    HRESULT hres = m_pDtObj->GetData(&fmte, &medium);
+    if(FAILED(hres))
+        return -1;
+    
+    int numFiles = DragQueryFile((HDROP)medium.hGlobal, (UINT)-1, NULL, 0);
+    TCHAR szPath[MAX_PATH] = _T("");
+    for(int i = 0; i < numFiles; i++)
+    {
+        DragQueryFile((HDROP)medium.hGlobal, i, szPath, sizeof(szPath));
+        rgpFiles.push_back(szPath);
+    }
+    ::ReleaseStgMedium(&medium);
+
+    return rgpFiles.size();
 }

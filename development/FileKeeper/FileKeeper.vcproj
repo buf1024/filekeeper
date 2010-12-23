@@ -176,10 +176,6 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath=".\FileKeeper.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\stdafx.cpp"
 				>
 				<FileConfiguration
@@ -199,6 +195,10 @@
 					/>
 				</FileConfiguration>
 			</File>
+			<File
+				RelativePath=".\WinMain.cpp"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Í·ÎÄ¼þ"
@@ -206,7 +206,7 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
-				RelativePath=".\FileKeeper.h"
+				RelativePath=".\ProductInfo.h"
 				>
 			</File>
 			<File
@@ -307,6 +307,22 @@
 		<Filter
 			Name="Handler"
 			>
+			<File
+				RelativePath=".\Handler\FileKeeper.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Handler\FileKeeper.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Handler\FileKeeperContext.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Handler\FileKeeperContext.h"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Util"
@@ -386,6 +402,14 @@
 			<Filter
 				Name="Misc"
 				>
+				<File
+					RelativePath=".\Util\SingletonInst.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Util\SingletonInst.h"
+					>
+				</File>
 				<File
 					RelativePath=".\Util\Util.cpp"
 					>

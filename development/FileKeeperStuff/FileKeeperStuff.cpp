@@ -115,7 +115,7 @@ HRESULT FileKeeperStuff::QueryContextMenu(
 		memset(&mii, 0, sizeof(mii));
 		mii.cbSize = sizeof(mii);
 		nLen = LoadString(hInst, IDS_STRING_FILEKEEPER, szBuf, MAX_PATH) + 1;
-		mii.fMask = MIIM_SUBMENU | MIIM_STRING | MIIM_ID; //MIIM_BITMAP
+		mii.fMask = MIIM_SUBMENU | MIIM_STRING | MIIM_ID;
 		mii.hSubMenu = hFKMenu;
 		mii.wID = nCmdID++;
 		mii.dwTypeData = szBuf;
@@ -257,7 +257,23 @@ ULONG FileKeeperStuff::Release( void)
 //Menu Handler
 void FileKeeperStuff::OnAbout()
 {
-	MessageBox(NULL, _T("OnAbout"), _T("About"), MB_OK);
+    ModuleContex* pCtx = ModuleContex::GetInstPtr();
+    list<Std_String> rgpFiles;
+    int nCount = pCtx->GetSelectedFiles(rgpFiles);
+    if (nCount > 0)
+    {
+        Std_String strDisp = _T("Selected Files:\r\n");
+        for(list<Std_String>::iterator iter = rgpFiles.begin(); iter != rgpFiles.end(); ++iter)
+        {
+            strDisp += *iter;
+            strDisp += _T("\r\n");
+        }
+        MessageBox(NULL, strDisp.c_str(), _T("OnAbout"), MB_OK);
+    }
+    else
+    {
+	    MessageBox(NULL, _T("OnAbout"), _T("About"), MB_OK);
+    }
 }
 void FileKeeperStuff::OnSetting()
 {

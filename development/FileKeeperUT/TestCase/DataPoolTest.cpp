@@ -20,15 +20,17 @@ DataPoolTest::~DataPoolTest(void)
 
 void DataPoolTest::setUp()
 {
-	if (gbInt) return;
+    
+	
+    if (gbInt) return;
 	
 	gbInt = true;
 	//Assume we have 3 users
 	//1. heidong 12345678911111 heidong
 	//2. kavin 14785214782 kavin
 	//3. hello 1478569 hello
-	DataPool* pPool = DataPool::GetInstPtr();
-	pPool->Init(_T("FileKeeper.db"));
+    DataPool* pPool = DataPool::GetInstPtr();
+    pPool->Init(_T("FileKeeper.db"));
 	pPool->Empty();
 
 	UserObject* pObj = new UserObject;
@@ -240,7 +242,7 @@ void DataPoolTest::testGetSpecProgForbidPath()
 		iter != rgpPath.end(); ++iter)
 	{
 		CPPUNIT_ASSERT(iter->m_strPath == _T("C:\\AAA") || iter->m_strPath == _T("B:\\BBB"));
-		CPPUNIT_ASSERT(iter->m_nOpt == 0xFF);
+		CPPUNIT_ASSERT(iter->m_nOpt == 0x07);
 	}
 }
 void DataPoolTest::testGetSpecPathForbidProg()
@@ -258,7 +260,7 @@ void DataPoolTest::testGetSpecPathForbidProg()
 		iter != rgpProg.end(); ++iter)
 	{
 		CPPUNIT_ASSERT((*iter)->GetProgPath() == _T("C:\\a.exe") || (*iter)->GetProgPath() == _T("C:\\d.exe"));
-		CPPUNIT_ASSERT((*iter)->GetDescription() == _T("a4777777") || (*iter)->GetDescription() == _T("d4777777"));
+		CPPUNIT_ASSERT((*iter)->GetFootprint() == _T("a4777777") || (*iter)->GetFootprint() == _T("d4777777"));
 	}
 
 	for(list<ProgObject*>::iterator iter = rgpProg.begin();
@@ -286,7 +288,7 @@ void DataPoolTest::testGetEncriptPathUser()
 	}
 }
 
-void DataPoolTest::testDropPath()
+void DataPoolTest::testAddDropPath()
 {
 	DataPool* pPool = DataPool::GetInstPtr();
 
@@ -296,6 +298,7 @@ void DataPoolTest::testDropPath()
 	CPPUNIT_ASSERT(nCount == 1);
 	CPPUNIT_ASSERT(nCount == rgpPath.size());
 	ASSERT(rgpPath.front() == _T("C:\\WINDOWS\\system32"));
+    pPool->AddForbidPath(_T("D:\\Program Files"));
 
 	Std_String strProgPath = _T("C:\\e.exe");
 	pPool->DropForbidPath(strProgPath, _T("C:\\AAA"));	
@@ -304,32 +307,29 @@ void DataPoolTest::testDropPath()
 	CPPUNIT_ASSERT(nCount == 1);
 	CPPUNIT_ASSERT(nCount == rgpPathOpt.size());
 	ASSERT(rgpPathOpt.front().m_strPath == _T("B:\\BBB"));
+    pPool->AddForbidPath(strProgPath, _T("C:\\AAA"));	
 
 	Std_String strUser = _T("heidong");
 	pPool->DropEncryptPath(strUser, _T("E:\\DDD"));
 	list<Std_String> rgpPathEn;
-	nCount = pPool->GetEncryptPath(strUser, rgpPath);
-	
+	nCount = pPool->GetEncryptPath(strUser, rgpPathEn);	
 	CPPUNIT_ASSERT(nCount == 1);
 	CPPUNIT_ASSERT(nCount == rgpPathEn.size());
 	ASSERT(rgpPathEn.front() == _T("H:\\AAA"));
+    pPool->AddEncryptPath(strUser, _T("E:\\DDD"));
+
+    strProgPath = _T("C:\\e.exe");
+    pPool->ChangeForbidPathOpt(strProgPath, _T("B:\\BBB"), 0x01);
+    pPool->DropForbidPath(strProgPath, _T("C:\\AAA"));	
+    nCount = pPool->GetForbidPath(strProgPath, rgpPathOpt);
+    CPPUNIT_ASSERT(nCount == 1);
+    CPPUNIT_ASSERT(nCount == rgpPathOpt.size());
+    ForbidOpt opt = rgpPathOpt.front();
+    CPPUNIT_ASSERT(opt.m_nOpt == 0X01);
+    pPool->ChangeForbidPathOpt(strProgPath, _T("B:\\BBB"), 0x07);
+    pPool->AddForbidPath(strProgPath, _T("C:\\AAA"));	
 
 }
 
-void DataPoolTest::testChangeForbidPathOpt()
-{
-	DataPool* pPool = DataPool::GetInstPtr();
-	Std_String strProgPath = _T("C:\\e.exe");
-	pPool->ChangeForbidPathOpt(strProgPath, _T("B:\\BBB"), 0x01);
-
-	list<ForbidOpt> rgpPathOpt;
-	int nCount = pPool->GetForbidPath(strProgPath, rgpPathOpt);
-
-	CPPUNIT_ASSERT(nCount == 1);
-	CPPUNIT_ASSERT(nCount == rgpPathOpt.size());
-
-	ForbidOpt opt = rgpPathOpt.front();
-	CPPUNIT_ASSERT(opt.m_nOpt == 0X01);
-}
 
 CPPUNIT_TEST_SUITE_REGISTRATION(DataPoolTest);

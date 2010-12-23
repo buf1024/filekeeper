@@ -13,6 +13,7 @@
 
 ProgObject::ProgObject(DataPool* pPool)
 : PersistObject(pPool)
+, m_nOption(0)
 {
 }
 
@@ -63,6 +64,16 @@ Std_String ProgObject::GetProgName()
 	}
 	return strRet;
 }
+
+void ProgObject::SetOption(int nOpt)
+{
+
+}
+int ProgObject::GetOption()
+{
+    return m_nOption;
+}
+
 
 void ProgObject::SetFootprint(Std_String strFootprint)
 {

@@ -1,3 +1,4 @@
+--Tables
 CREATE TABLE User
 (
     Name VARCHAR(64) PRIMARY KEY,
@@ -8,6 +9,7 @@ CREATE TABLE User
 CREATE TABLE Prog
 (
     Path VARCHAR(260) PRIMARY KEY,
+    Option INTEGER,     -- -1 ingnore
     FootPrint CHAR(32), --MD5 Value
     Desc VARCHAR(256)
 );
@@ -28,12 +30,23 @@ CREATE TABLE EncryptList
     FOREIGN KEY (UserName) REFERENCES User
 );
 
-CREATE TABLE SysConfig
+CREATE TABLE SystemConfig
 (
     ID INTEGER PRIMARY KEY AUTOINCREMENT,
     ProgName VARCHAR(64),
-    ProgVer VARCHAR(16)
+    ProgVer VARCHAR(64)
     --Other values....
 );
 
-INSERT INTO SysConfig(ProgName, ProgVer) VALUES('FileKeeper', '1.0.0.0');
+--Views
+CREATE VIEW PathForbid AS SELECT Path FROM ForbidList WHERE Option = -1;
+CREATE VIEW IngoreProg AS SELECT Path, FootPrint, Desc FROM Prog WHERE Option = -1;
+
+--Indexes
+CREATE INDEX User_Index ON User(Name);
+CREATE INDEX Prog_Index ON Prog(Path);
+CREATE INDEX ForbidList_Index_1 ON ForbidList(ProgPath);
+CREATE INDEX ForbidList_Index_2 ON ForbidList(Path);
+CREATE INDEX ForbidList_Index_3 ON ForbidList(Option);
+CREATE INDEX EncryptList_Index_1 ON EncryptList(Path);
+CREATE INDEX EncryptList_Index_2 ON EncryptList(UserName);

@@ -9,9 +9,9 @@ def main():
     sql = sys.argv[1]
     hpp = sys.argv[2]
         
-    res = '#pragma once\n\nconst char gszCreateSql[] =\n'
-    drop = '\nconst char gszDropSql[] =\n'
-    clean = '\nconst char gszCleanSql[] =\n'
+    res = '#pragma once\n\nconst char gszCreateSql[] =\n\t\t"BEGIN TRANSACTION;\\n"\n'
+    drop = '\nconst char gszDropSql[] =\n\t\t"BEGIN TRANSACTION;\\n"\n'
+    clean = '\nconst char gszCleanSql[] =\n\t\t"BEGIN TRANSACTION;\\n"\n'
     
     sqlfile = open(sql)
     sqls = sqlfile.readlines()
@@ -30,16 +30,13 @@ def main():
             tablename = strTmp
             if idx != -1:
                 tablename = strTmp[:idx].strip()
-            drop = drop + '\t\t"DROP TABLE ' + tablename + ';\\r\\n"\n'
-            clean = clean + '\t\t"DELETE FROM ' + tablename + ';\\r\\n"\n'
-        res = res + '\t\t"' + sentence + '\\r\\n"\n'
+            drop = drop + '\t\t"DROP TABLE ' + tablename + ';\\n"\n'
+            clean = clean + '\t\t"DELETE FROM ' + tablename + ';\\n"\n'
+        res = res + '\t\t"' + sentence + '\\n"\n'
         empty = 0
-    res = res[:-(empty+1)]
-    res = res + ';\n'
-    drop = drop[:-(empty+1)]
-    drop = drop + ';\n'
-    clean = clean[:-(empty+1)]
-    clean = clean + ';\n'
+    res = res + '\t\t"COMMIT;\\n";\n'    
+    drop = drop + '\t\t"COMMIT;\\n";\n'    
+    clean = clean + '\t\t"COMMIT;\\n";\n'
     sqlfile.close()
     
     hppfile = open(hpp, 'w')
